@@ -17,7 +17,7 @@ const createPost = async (req, res) => {
     }
 
     await blog.save();
-    res.status(201).json({ message: "Blog post created successfully", blog });
+    res.status(201).json({ blog });
   } catch (error) {
     console.error("Error creating blog post:", error.message);
     res.status(500).json({ message: "Internal server error" });
@@ -62,7 +62,7 @@ const uploadPost = async (req, res) => {
     existingBlog.author = author;
 
     await existingBlog.save();
-    res.json({ message: "Blog post updated successfully", blog: existingBlog });
+    res.json({ blog: existingBlog });
   } catch (error) {
     console.error("Error updating blog post:", error.message);
     res.status(500).json({ message: "Internal server error" });
@@ -92,7 +92,7 @@ const deletePost = async (req, res) => {
 const getAllPost = async (req, res) => {
   try {
     const blogs = await Blog.find().populate("author", "-password");
-    res.json({ message: "All blog posts fetched successfully", blogs });
+    res.json({ blogs });
   } catch (error) {
     console.error("Error fetching all blog posts:", error.message);
     res.status(500).json({ message: "Internal server error" });
@@ -106,7 +106,7 @@ const getPostById = async (req, res) => {
       "-password"
     );
     if (!blog) return res.status(404).json({ message: "Blog post not found" });
-    res.json({ message: "Blog post fetched successfully", blog });
+    res.json({ blog });
   } catch (error) {
     console.error("Error fetching blog post:", error.message);
     res.status(500).json({ message: "Internal server error" });
