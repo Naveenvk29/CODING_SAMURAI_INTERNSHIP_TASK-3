@@ -1,4 +1,40 @@
+import { useState } from "react";
+import { useSendMessageMutation } from "../redux/api/message";
+import { toast } from "react-toastify";
+import Loader from "../components/Loader";
 const Contact = () => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [Phone, setPhone] = useState("");
+  const [message, setMessage] = useState("");
+
+  const [sendMessageApi, { isLoading }] = useSendMessageMutation();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!firstName || !lastName || !email || !Phone || !message) {
+      toast.error("All fields are required");
+      return;
+    }
+
+    const formData = {
+      firstName,
+      lastName,
+      email,
+      phone: Phone,
+      message,
+    };
+
+    try {
+      await sendMessageApi(formData).unwrap();
+      toast.success("Message sent successfully!");
+    } catch (error) {
+      toast.error(error.data?.message || "Failed to send message");
+      console.error(error);
+    }
+  };
+
   return (
     <div>
       <div className="mx-auto max-w-7xl px-4">
@@ -10,7 +46,7 @@ const Contact = () => {
                   Get in touch
                 </p>
 
-                <form action="" className="mt-8 space-y-4">
+                <form onSubmit={handleSubmit} className="mt-8 space-y-4">
                   <div className="grid w-full gap-y-4 md:gap-x-4 lg:grid-cols-2">
                     <div className="grid w-full  items-center gap-1.5">
                       <label className="text-sm font-medium leading-none text-gray-700 peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
@@ -21,6 +57,8 @@ const Contact = () => {
                         type="text"
                         id="first_name"
                         placeholder="First Name"
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
                       />
                     </div>
                     <div className="grid w-full  items-center gap-1.5">
@@ -32,6 +70,8 @@ const Contact = () => {
                         type="text"
                         id="last_name"
                         placeholder="Last Name"
+                        value={lastName}
+                        onChange={(e) => setLastName(e.target.value)}
                       />
                     </div>
                   </div>
@@ -40,10 +80,12 @@ const Contact = () => {
                       Email
                     </label>
                     <input
-                      className="flex h-10 w-full rounded-md  border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50  "
-                      type="text"
+                      className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                      type="email"
                       id="email"
                       placeholder="Email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
                   <div className="grid w-full  items-center gap-1.5">
@@ -51,10 +93,12 @@ const Contact = () => {
                       Phone number
                     </label>
                     <input
-                      className="flex h-10 w-full rounded-md  border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50  "
+                      className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                       type="tel"
                       id="phone_number"
                       placeholder="Phone number"
+                      value={Phone}
+                      onChange={(e) => setPhone(e.target.value)}
                     />
                   </div>
                   <div className="grid w-full  items-center gap-1.5">
@@ -62,18 +106,22 @@ const Contact = () => {
                       Message
                     </label>
                     <textarea
-                      className="flex h-10 w-full rounded-md  border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50  "
+                      className="flex w-full rounded-md border border-gray-300 bg-transparent px-4 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                       id="message"
                       placeholder="Leave us a message"
                       cols="3"
-                    ></textarea>
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                    />
                   </div>
                   <button
-                    type="button"
+                    disabled={isLoading}
+                    type="submit"
                     className="w-full rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
                   >
-                    Send Message
+                    {isLoading ? "Loading..." : "Send message"}
                   </button>
+                  {isLoading && <Loader />}
                 </form>
               </div>
             </div>

@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { useCreatePostMutation } from "../../redux/api/blogApi";
 import Loader from "../../components/Loader";
 import { toast } from "react-toastify";
-import login from "../Auth/Login";
 
 const CreatePost = () => {
   const [title, setTitle] = useState("");
@@ -26,7 +25,6 @@ const CreatePost = () => {
     formData.append("content", content);
     formData.append("description", description);
     formData.append("image", image);
-    console.log(formData);
 
     try {
       await createPost(formData).unwrap();
