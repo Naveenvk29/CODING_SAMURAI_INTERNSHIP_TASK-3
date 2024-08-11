@@ -10,9 +10,7 @@ import messageRoutes from "./Routes/message.routes.js";
 const app = express();
 
 app.use(
-  cors({
-    origin: "https://my-blog-41c5.onrender.com",
-  })
+  cors()
 );
 
 app.use(express.urlencoded({ extended: true }));
