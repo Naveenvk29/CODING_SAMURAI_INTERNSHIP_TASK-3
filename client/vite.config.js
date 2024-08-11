@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      "/api": "https://my-blog-api-ifwc.onrender.com",
+      "/api/": "https://my-blog-api-ifwc.onrender.com",
     },
   },
 });
