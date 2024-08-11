@@ -1,5 +1,6 @@
 import express from "express";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 
 //
 import userRoute from "./Routes/user.routes.js";
@@ -7,6 +8,12 @@ import blogRoutes from "./Routes/blog.routes.js";
 import commentRoutes from "./Routes/commen.routes.js";
 import messageRoutes from "./Routes/message.routes.js";
 const app = express();
+
+app.use(
+  cors({
+    origin: process.env.CORS_ORIGIN,
+  })
+);
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
