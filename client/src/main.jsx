@@ -18,11 +18,11 @@ import PrivateRoutes from "./Pages/User/PrivateRoutes.jsx";
 import Profile from "./Pages/User/Profile.jsx";
 import CreatePost from "./Pages/blog/CreatePost.jsx";
 import Allblogs from "./Pages/blog/Allblogs.jsx";
-import MyBlog from "./Pages/blog/myBlog.jsx";
 import PostDetails from "./Pages/blog/PostDetails.jsx";
 import Home from "./Pages/Home.jsx";
 import About from "./Pages/About.jsx";
 import Contact from "./Pages/Contact.jsx";
+
 const routes = createBrowserRouter(
   createRoutesFromElements(
     <Route path="" element={<App />}>
@@ -35,7 +35,6 @@ const routes = createBrowserRouter(
       <Route path="" element={<PrivateRoutes />}>
         <Route path="/profile" element={<Profile />} />
         <Route path="/write-blog" element={<CreatePost />} />
-        <Route path="/my-blogs" element={<MyBlog />} />
       </Route>
       <Route path="/blogs" element={<Allblogs />} />
       <Route path="/blogs/:blogId" element={<PostDetails />} />

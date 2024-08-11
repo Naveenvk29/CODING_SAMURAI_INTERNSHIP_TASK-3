@@ -29,7 +29,7 @@ const CreatePost = () => {
     try {
       await createPost(formData).unwrap();
       toast.success("Blog post created successfully!");
-      navigate("/my-blogs");
+      navigate("/blogs");
     } catch (err) {
       toast.error(err.data?.message || "Failed to create blog post");
     }

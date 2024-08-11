@@ -33,14 +33,17 @@ const PostDetails = () => {
           />
         </div>
         <div className="text-center">
-          <h1 className="text-3xl font-semibold mb-2">{postData.title}</h1>
-          <p className="text-gray-700 mb-4">{postData.description}</p>
+          <h1 className=" text-3xl font-semibold mb-2">{postData.title}</h1>
+          <p className="text-left text-gray-700 mb-4">{postData.description}</p>
           <hr className="my-4" />
-          <p className="text-gray-600 mb-2">{postData.content}</p>
-          <p className="text-gray-500 mb-1">
+          <p className="text-left text-gray-600 mb-2">{postData.content}</p>
+          <hr className="my-4" />
+          <p className="text-left text-lg font-semibold text-gray-800 mb-1">
             Posted by: {postData.author.username}
           </p>
-          <p className="text-gray-500">Published on: {formattedDate}</p>
+          <p className="text-left text-lg font-semibold text-gray-500">
+            Published on: {formattedDate}
+          </p>
         </div>
       </div>
     </div>

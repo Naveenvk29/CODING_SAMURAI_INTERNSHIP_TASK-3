@@ -13,18 +13,12 @@ import { useLogoutMutation } from "../../redux/api/userApi";
 // Dropdown Component
 const Dropdown = ({ logoutHandler }) => {
   return (
-    <div className="absolute right-0 mt-2 w-48 bg-gray-800 p-2 rounded shadow-md flex flex-col">
+    <div className="absolute right-0 mt-2 w-48 bg-gray-800 p-2 rounded shadow-md flex flex-col z-auto ">
       <Link
         to="/profile"
         className="text-white text-lg py-1 hover:text-gray-400"
       >
         Profile
-      </Link>
-      <Link
-        to="/my-blogs"
-        className="text-white text-lg py-1 hover:text-gray-400"
-      >
-        My Blogs
       </Link>
       <Link
         to="/write-blog"
@@ -65,7 +59,7 @@ const Navigation = () => {
 
   return (
     <header>
-      <nav className="flex justify-between items-center bg-gray-700 py-5 px-8">
+      <nav className="flex justify-between items-center bg-gray-700 py-5 px-8 z-50">
         {/* Blog Name/Logo */}
         <div className="font-bold text-white">
           <h1 className="tracking-wider text-xl">

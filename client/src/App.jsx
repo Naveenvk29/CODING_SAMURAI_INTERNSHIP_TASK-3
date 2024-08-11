@@ -2,6 +2,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Outlet } from "react-router-dom";
 import Navigation from "./Pages/Auth/Navigation";
+import Footer from "./components/Footer";
 
 const App = () => {
   return (
@@ -9,8 +10,9 @@ const App = () => {
       <ToastContainer />
       <div>
         <Navigation />
-        {/* Your App components here */}
+
         <Outlet />
+        <Footer />
       </div>
     </>
   );
