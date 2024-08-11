@@ -14,7 +14,6 @@ import {
 
 import Login from "./Pages/Auth/Login.jsx";
 import Register from "./Pages/Auth/Register.jsx";
-import { PrivateRoutes } from "./Pages/User/PrivateRoutes.jsx";
 import Profile from "./Pages/User/Profile.jsx";
 import CreatePost from "./Pages/blog/CreatePost.jsx";
 import Allblogs from "./Pages/blog/Allblogs.jsx";
@@ -22,6 +21,7 @@ import PostDetails from "./Pages/blog/PostDetails.jsx";
 import Home from "./Pages/Home.jsx";
 import About from "./Pages/About.jsx";
 import Contact from "./Pages/Contact.jsx";
+import PrivateRoutes from "./components/PrivateRoutes.jsx";
 
 const routes = createBrowserRouter(
   createRoutesFromElements(

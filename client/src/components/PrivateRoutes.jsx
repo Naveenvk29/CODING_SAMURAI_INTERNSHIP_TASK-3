@@ -7,4 +7,4 @@ const PrivateRoutes = () => {
   return userInfo ? <Outlet /> : <Navigate to="/login" replace />;
 };
 
-export { PrivateRoutes };
+export default PrivateRoutes;
